@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:p="http://primefaces.org/ui">
+    
+			<h:form id="master">
+	<p:commandButton icon="ui-icon-circle-plus" actionListener="#{medicalRecordBean.doNew}" value="Add new MedicalRecord" update=":details"/>
+			
+			<p:dataTable rendered="#{not empty medicalRecordBean.records}"
+			           value="#{medicalRecordBean.records}" 
+			           var="record" 
+			           rows="5"
+			           rowKey="#{record.id}"
+			           paginator="true"
+			           paginatorPosition="bottom"
+			           filteredValue="#{medicalRecordBean.filetredRecords}"
+			           selectionMode="single"
+			           selection="#{medicalRecordBean.record}"
+			           widgetVar="eventTabW">
+			           
+			     <f:facet name="header">
+			        <h:outputText value="Manage MedicalRecords" />
+			     </f:facet>
+			     
+			      <p:ajax event="rowSelect" listener="#{medicalRecordBean.onRowSelect}" update=":details"/>
+			      
+			 		 	
+			 
+			  
+			  <p:column headerText="Allergie" filterBy="#{record.allergie}" filterMatchMode="contains">
+			     
+			   <h:outputText value="#{record.allergie}" />
+			  </p:column>
+			  
+			  
+			  
+			   <p:column headerText="Sang" filterBy="#{record.sang}" filterMatchMode="contains">
+			    
+			   <h:outputText value="#{record.sang}" />
+			  </p:column>
+			  
+			</p:dataTable>
+			
+			</h:form>
+			
+</ui:composition>

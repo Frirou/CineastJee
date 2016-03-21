@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel id="details" header="MedicalRecords details"
+		visible="#{medicalRecordBean.formDisplayed}">
+		<h:form rendered="#{medicalRecordBean.formDisplayed}"
+			id="details_form">
+
+			<h:panelGrid columns="2">
+
+		<h:outputText value="Picture : " style="FONT-SIZE: small; COLOR: #000000;"/>
+    
+    <p:graphicImage id="Med_image" value="#{theaterImageBean.image}" cache="false" styleClass="editor-picture" width="283" height="163">
+    							<f:param name="idTheater" value="#{theaterBean.cinemaTheater.id_Theater}" />
+						</p:graphicImage>
+
+
+				<h:outputText value="Allergie : "
+					style="FONT-SIZE: small; COLOR: #000000;" />
+				<p:inputText value="#{medicalRecordBean.record.allergie}" />
+
+
+
+				<h:outputText value="Sang:"
+					style="FONT-SIZE: small; COLOR: #000000;" />
+				<p:inputText value="#{medicalRecordBean.record.sang}" />
+
+
+
+
+				<h:outputText value="etatMedical:"
+					style="FONT-SIZE: small; COLOR: #000000;" />
+				<p:inputText value="#{medicalRecordBean.record.etatMedical}" />
+
+
+
+
+
+
+
+
+
+
+
+				<h:panelGrid columns="3">
+					<p:commandButton
+						actionListener="#{medicalRecordBean.doSaveOrUpdate()}"
+						value="Save"
+						style="FONT-SIZE: small; 
+			COLOR: #0000a0; BACKGROUND-COLOR: #ffffff; FONT-WEIGHT: bold;"
+						update=":master :details" oncomplete="eventTabW.filter();" />
+
+					<p:commandButton actionListener="#{medicalRecordBean.doDelete()}"
+						value="Delete"
+						style="FONT-SIZE: small; 
+			COLOR: #0000a0; BACKGROUND-COLOR: #ffffff; FONT-WEIGHT: bold;"
+						update=":master :details" oncomplete="eventTabW.filter();" />
+
+
+
+					<p:commandButton actionListener="#{medicalRecordBean.doCancel()}"
+						value="Cancel"
+						style="FONT-SIZE: small; 
+			COLOR: #0000a0; BACKGROUND-COLOR: #ffffff; FONT-WEIGHT: bold;"
+						update=":details" />
+
+					<p:commandButton actionListener="#{medicalRecordBean.doUpdate()}"
+						value="Update"
+						style="FONT-SIZE: small; 
+			COLOR: #0000a0; BACKGROUND-COLOR: #ffffff; FONT-WEIGHT: bold;"
+						update=":master :details" oncomplete="userTabW.filter();" />
+
+					<!-- 					<p:commandButton icon="ui-icon-circle-plus" actionListener="#{placeBean.doAddWish()}" value="ADD To My WishListe" /> -->
+				</h:panelGrid>
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+
+</ui:composition>
